@@ -11,12 +11,12 @@ pipeline {
         }
         stage('docker image build') {
             steps {
-                sh 'docker image build -t venu1212/saleor.dash:Del.'
+                sh 'docker image build -t venu1212/saleor.dash:Del .'
             }
         }
         stage('push image to registry') {
             steps {
-                sh 'docker image push venu1212/saleor.dash:del'
+                sh 'docker image push venu1212/saleor.dash:Del'
             }
         }
     }
