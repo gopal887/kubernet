@@ -1,29 +1,17 @@
-# Docker
-# Build a Docker image
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+---
+# where to run the ci/cd pipeline
+pool:
+  vmImage: ubuntu-22.04
 
+# when to run
 trigger:
-- main
+  - main
 
-resources:
-- repo: self
-
-variables:
-  tag: '$(Build.BuildId)'
-
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/dockerfile.spl'
-        tags: |
-          $(tag)
+# what has to be done
+steps:
+  - task: Docker@2
+    inputs:
+      command: buildAndPush
+      Dockerfile: "./Dockerfile"
+      tags: "shaikkhajaibrahim/saleordashboard:AZDEV"
+      containerRegistry: DockerHub
