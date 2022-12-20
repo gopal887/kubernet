@@ -9,9 +9,9 @@ trigger:
 
 # what has to be done
 steps:
-  - task: Docker@2
+  - task: Docker@1
     inputs:
       command: buildAndPush
       Dockerfile: "./Dockerfile"
-      tags: "shaikkhajaibrahim/saleordashboard:AZDEV"
+      tags: "shaikkhajaibrahim/saleordashboard:AV"
       containerRegistry: DockerHub
